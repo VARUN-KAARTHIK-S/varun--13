@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Currency Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .converter {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    .converter input, .converter select, .converter button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Currency Converter</h1>
+  <div class="converter">
+    <input type="number" id="amount" placeholder="Enter amount" />
+    <select id="fromCurrency"></select>
+    <select id="toCurrency"></select>
+    <button id="convertBtn">Convert</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const amountInput = document.getElementById('amount');
+    const fromCurrency = document.getElementById('fromCurrency');
+    const toCurrency = document.getElementById('toCurrency');
+    const convertBtn = document.getElementById('convertBtn');
+    const resultDiv = document.getElementById('result');
+
+    const currencies = ["USD", "EUR", "GBP", "INR", "JPY", "AUD", "CAD", "CHF", "CNY", "SEK"];
+
+    currencies.forEach(currency => {
+      const option1 = document.createElement('option');
+      option1.value = currency;
+      option1.text = currency;
+      fromCurrency.add(option1);
+
+      const option2 = document.createElement('option');
+      option2.value = currency;
+      option2.text = currency;
+      toCurrency.add(option2);
+    });
+
+    fromCurrency.value = "USD";
+    toCurrency.value = "INR";
+
+    convertBtn.addEventListener('click', () => {
+      const amount = parseFloat(amountInput.value);
+      const from = fromCurrency.value;
+      const to = toCurrency.value;
+
+      if (isNaN(amount) || amount <= 0) {
+        resultDiv.textContent = "Please enter a valid amount.";
+        return;
+      }
+
+      const apiUrl = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${from.toLowerCase()}.json`;
+
+      fetch(apiUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          const rate = data[from.toLowerCase()][to.toLowerCase()];
+          if (rate) {
+            const convertedAmount = (amount * rate).toFixed(2);
+            resultDiv.textContent = `${amount} ${from} = ${convertedAmount} ${to}`;
+          } else {
+            resultDiv.textContent = "Conversion rate not available.";
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching exchange rates:', error);
+          resultDiv.textContent = "Error fetching exchange rates.";
+        });
+    });
+  </script>
+</body>
+</html>
