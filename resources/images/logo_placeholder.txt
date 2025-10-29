@@ -1,0 +1,22 @@
+Logo Placeholder
+================
+
+To add a logo to your application:
+
+1. Create or find a logo image (PNG format recommended)
+2. Name it "logo.png" 
+3. Place it in the resources/images/ directory
+4. The application will automatically load it
+
+Recommended logo specifications:
+- Format: PNG with transparency
+- Size: 64x64 pixels or 128x128 pixels
+- Style: Simple, professional design
+- Colors: Match the application theme (blues/grays)
+
+Example logo ideas:
+- Graduation cap icon
+- School/university building
+- Book with checkmark
+- Calendar with attendance marks
+- Simple "AMS" text logo

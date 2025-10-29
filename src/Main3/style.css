@@ -1,0 +1,105 @@
+.root, .root-pane, .attendance-root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #e3f2fd; /* Light blue theme */
+    -fx-alignment: CENTER; /* center contents by default */
+}
+
+.button {
+    -fx-background-color: linear-gradient(to bottom right, #4caf50, #388e3c);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom right, #66bb6a, #43a047);
+}
+
+.label, .title-label {
+    -fx-text-fill: #0b3b70; /* dark blue-ish */
+    -fx-font-size: 14px;
+    -fx-text-alignment: center;
+}
+
+/* Strong title styling */
+.title-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 6 0 10 0;
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #c8e6c9;
+    -fx-border-radius: 5;
+}
+
+.table-column {
+    -fx-alignment: CENTER;
+}
+
+.text-field {
+    -fx-border-color: #81c784;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+#titleLabel {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #073642;
+}
+
+/* Status badges for attendance */
+
+.status-badge {
+    -fx-padding: 6 12 6 12;
+    -fx-background-radius: 12;
+    -fx-font-weight: bold;
+    -fx-min-width: 34;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: center;
+}
+
+/* Blue shades theme for badges */
+.status-present {
+    -fx-background-color: #0d47a1; /* dark blue */
+    -fx-text-fill: white;
+}
+
+.status-absent {
+    -fx-background-color: #1565c0; /* medium blue */
+    -fx-text-fill: white;
+}
+
+.status-od {
+    -fx-background-color: #64b5f6; /* light blue */
+    -fx-text-fill: #012a4a;
+}
+
+/* small row styling */
+.attendance-row {
+    -fx-padding: 8 6;
+    -fx-alignment: CENTER; /* center row contents horizontally */
+    -fx-spacing: 12;
+}
+
+/* Report box that wraps the entire summary */
+.report-box {
+    -fx-background-color: rgba(255,255,255,0.95);
+    -fx-border-color: #90caf9;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 12;
+    -fx-effect: dropshadow(gaussian, rgba(2,6,23,0.12), 8, 0.0, 0, 2);
+}
+
+/* Main window border */
+.main-border {
+    -fx-border-color: #90caf9;
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}

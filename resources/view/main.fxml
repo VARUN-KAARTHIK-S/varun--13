@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.controller.MainController">
+   <top>
+      <VBox styleClass="header">
+         <Label styleClass="app-title" text="🎓 Attendance Management System" />
+         <Separator />
+      </VBox>
+   </top>
+   <center>
+      <TabPane fx:id="mainTabPane" styleClass="main-tabs" tabClosingPolicy="UNAVAILABLE">
+         <Tab fx:id="facultyTab" text="Faculty Management">
+            <HBox spacing="20">
+               <VBox spacing="10" styleClass="form-section">
+                  <Label styleClass="section-title" text="Add Faculty" />
+                  <TextField fx:id="facultyNameField" promptText="Faculty Name" />
+                  <TextField fx:id="facultyDeptField" promptText="Department" />
+                  <TextField fx:id="facultyEmailField" promptText="Email" />
+                  <Button onAction="#addFaculty" styleClass="primary-btn" text="Add Faculty" />
+                  
+                  <Separator />
+                  
+                  <Label styleClass="section-title" text="Add Class" />
+                  <TextField fx:id="classNameField" promptText="Class Name" />
+                  <Button onAction="#addClassToFaculty" styleClass="secondary-btn" text="Add Class" />
+               </VBox>
+               
+               <VBox spacing="10" styleClass="list-section">
+                  <Label styleClass="section-title" text="Faculty List" />
+                  <ListView fx:id="facultyListView" prefHeight="200" />
+                  
+                  <Label styleClass="section-title" text="Classes" />
+                  <ListView fx:id="classListView" prefHeight="150" />
+               </VBox>
+            </HBox>
+         </Tab>
+         
+         <Tab fx:id="studentsTab" text="Student Management">
+            <VBox spacing="15">
+               <HBox spacing="20">
+                  <VBox spacing="10" styleClass="form-section">
+                     <Label styleClass="section-title" text="Add Student" />
+                     <ComboBox fx:id="classComboBox" promptText="Select Class" />
+                     <TextField fx:id="rollNumberField" promptText="Roll Number" />
+                     <TextField fx:id="studentNameField" promptText="Student Name" />
+                     <TextField fx:id="studentEmailField" promptText="Email" />
+                     <TextField fx:id="studentPhoneField" promptText="Phone" />
+                     <HBox spacing="10">
+                        <Button onAction="#addStudent" styleClass="primary-btn" text="Add Student" />
+                        <Button onAction="#removeStudent" styleClass="danger-btn" text="Remove Selected" />
+                     </HBox>
+                  </VBox>
+               </HBox>
+               
+               <TableView fx:id="studentsTable" styleClass="data-table">
+                  <columns>
+                     <TableColumn fx:id="rollCol" text="Roll Number" />
+                     <TableColumn fx:id="nameCol" text="Name" />
+                     <TableColumn fx:id="emailCol" text="Email" />
+                     <TableColumn fx:id="phoneCol" text="Phone" />
+                  </columns>
+               </TableView>
+            </VBox>
+         </Tab>
+         
+         <Tab fx:id="attendanceTab" text="Mark Attendance">
+            <VBox spacing="15">
+               <HBox spacing="20" styleClass="attendance-controls">
+                  <ComboBox fx:id="attendanceClassCombo" promptText="Select Class" />
+                  <ComboBox fx:id="periodCombo" promptText="Period" />
+                  <TextField fx:id="facultyNameAttendance" promptText="Faculty Name" />
+                  <Button onAction="#markAttendance" styleClass="primary-btn" text="Mark Attendance" />
+               </HBox>
+               
+               <Label fx:id="attendanceStatsLabel" styleClass="stats-label" />
+               
+               <ScrollPane fitToWidth="true">
+                  <VBox fx:id="studentAttendanceBox" spacing="5" styleClass="attendance-list" />
+               </ScrollPane>
+            </VBox>
+         </Tab>
+         
+         <Tab fx:id="reportsTab" text="Reports">
+            <VBox spacing="15">
+               <HBox spacing="20" styleClass="report-controls">
+                  <ComboBox fx:id="reportClassCombo" promptText="Select Class" />
+                  <DatePicker fx:id="startDatePicker" promptText="Start Date" />
+                  <DatePicker fx:id="endDatePicker" promptText="End Date" />
+                  <Button onAction="#generateReport" styleClass="primary-btn" text="Generate Report" />
+               </HBox>
+               
+               <Label fx:id="reportStatsLabel" styleClass="stats-label" />
+               
+               <TableView fx:id="reportTable" styleClass="data-table">
+                  <columns>
+                     <TableColumn text="Date" />
+                     <TableColumn text="Student" />
+                     <TableColumn text="Status" />
+                     <TableColumn text="Period" />
+                     <TableColumn text="Marked By" />
+                  </columns>
+               </TableView>
+            </VBox>
+         </Tab>
+         
+         <Tab fx:id="settingsTab" text="Settings">
+            <VBox spacing="20" styleClass="settings-section">
+               <Label styleClass="section-title" text="System Settings" />
+               
+               <HBox spacing="10">
+                  <Label text="Periods per Day:" />
+                  <Spinner fx:id="periodsSpinner" />
+               </HBox>
+               
+               <HBox spacing="10">
+                  <Label text="Institute Name:" />
+                  <TextField fx:id="instituteNameField" />
+               </HBox>
+               
+               <Button onAction="#saveSettings" styleClass="primary-btn" text="Save Settings" />
+            </VBox>
+         </Tab>
+      </TabPane>
+   </center>
+</BorderPane>
